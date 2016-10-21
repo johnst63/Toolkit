@@ -74,6 +74,23 @@ public class Calendar {
         return -1;
     }
 
+    /**
+     * Determines if an event from the events arraylist is removable based on the its name and date
+     * @param name the name of the CalendarEvent to remove
+     * @param date the date of the CalendarEvent to remove
+     * @return 1 if the item is removable/exists in the list, -1 if not
+     */
+    public int isRemovable(String name, Date date) {
+        int i = 0;
+        while(i < events.size()) {
+            if(date.equals(events.get(i).getDate()) && name.equals(events.get(i).getName())) {
+                return 1;
+            }
+            i+= 1;
+        }
+        return -1;
+    }
+
 //    public void removeEvent(String name) {
 //
 //    }
@@ -87,6 +104,19 @@ public class Calendar {
         index-= 1;
         if(index < events.size() && index >= 0) {
             events.remove(index);
+            return 1;
+        }
+        return -1;
+    }
+
+    /**
+     * Determines if an event from events is removable based on the index (starting from 1 not 0)
+     * @param index the index of the event in the events arraylist
+     * @return 1 if the item can be removed, -1 if it cannot be removed/does not exist
+     */
+    public int isRemovable(int index) {
+        index-= 1;
+        if(index < events.size() && index >= 0) {
             return 1;
         }
         return -1;
